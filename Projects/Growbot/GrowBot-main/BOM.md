@@ -9,7 +9,7 @@ The whole thing comes in well under $100.
 | # | Part | Spec | Qty | ~CAD | Where / notes |
 |---|------|------|----:|----:|----------------|
 | **Compute** |
-| 1 | Raspberry Pi Zero 2 W | quad core A53, WiFi/BT, 40 pin | 1 | $22 | you will need to solder on a 40 pin header |
+| 1 | Raspberry Pi Zero 2 W (or Pi 3 / 4) | quad core A53/A72, WiFi/BT, 40 pin | 1 | $22-$60 | Zero 2 W is smallest; Pi 3/4 are larger but faster |
 | 2 | microSD card | 16 to 32 GB, Class 10 / A1 | 1 | $8 | I run Raspberry Pi OS Lite (64 bit) |
 | 3 | 2x20 GPIO header | 0.1 inch male | 1 | $1 | skip if your Pi already has one |
 | **Actuation** |
@@ -17,7 +17,7 @@ The whole thing comes in well under $100.
 | 5 | 1 kΩ resistor | ¼ W | 1 | pennies | for the servo half duplex line |
 | **Sensing** |
 | 6 | MPU-6050 IMU (GY-521) | I²C 0x68, 6 axis, 3.3 V | 1 | $3 | |
-| 7 | OV5647 camera (Pi Zero) | 5 MP, narrow 22 to 15 pin CSI ribbon | 1 | $12 | get the Pi Zero version with the narrow ribbon, not the standard one |
+| 7 | OV5647 camera | 5 MP | 1 | $12 | Pi Zero needs narrow 22-pin ribbon; Pi 3/4 use standard 15-pin |
 | 8 | INMP441 I²S mic | 3.3 V, 24 bit | 1 | $4 | |
 | **Voice and lights** |
 | 9 | MAX98357A I²S amp | 3.2 W class D mono | 1 | $5 | |
@@ -37,7 +37,7 @@ The whole thing comes in well under $100.
 - **Hookup wire and dupont jumpers** to wire it up per the diagram.
 - **Mounting.** I skipped screws and just stuck the boards down with 3M double sided mounting squares. Fast, and easy to move things around.
 
-## GPIO pin map (Pi Zero 2 W, 40 pin header)
+## GPIO pin map (40 pin header: Zero 2 W, Pi 3, Pi 4)
 
 | Pi pin | Signal | Goes to |
 |-------:|--------|---------|
@@ -65,13 +65,14 @@ The 3.3 V for the IMU and the mic comes from the Pi's own 3.3 V pins, not from t
 
 ## Setup notes (the stuff that gave me trouble)
 
-1. Set the MT3608 to about 5.1 V with a multimeter before you connect the Pi. These boost modules ship turned up high.
+0. **Using Raspberry Pi 3 or 4:** These models are much larger than the Zero 2 W. The 3D printed body in this repo is sized specifically for the Zero. If you use a Pi 3 or 4, you will need to modify the mechanical design or mount the Pi externally. Also, Pi 3/4 use a standard 15-pin camera ribbon (not the narrow 22-pin version for the Zero).
+1. Set the MT3608 to about 5.1 V with a multimeter before you connect the Pi. These boost modules ship turned up high. **Note:** Pi 3/4 have significantly higher power requirements than the Zero 2 W (up to 3.5A for Pi 4). The MT3608 may not be sufficient for a Pi 4 under heavy load; consider a higher-current buck/boost converter or a dedicated 5V 4A supply if using the larger boards.
 2. The servos talk over the Pi's serial port, but the Pi uses it for other things by default. To hand it to the servos: add `dtoverlay=disable-bt` to `/boot/config.txt` (this frees the good serial port from Bluetooth), and in `raspi-config` turn the serial login off but leave the serial port itself on. After that the servos are on `/dev/serial0`.
 3. The SCS0009 use big endian byte order for the 2 byte reads and writes. I assumed little endian at first and it silently read and wrote garbage.
 4. Assign servo IDs 1 and 2 (both ship as ID 1, so you need to change one). This was a headache at first. The 3-pin servo lead is GND, VCC (5 V), DATA, but check your own servo's pinout before plugging in.
 5. Torque limit the servos to about 70 percent so a double stall stays inside the MT3608's 2 A budget, otherwise use dedicated power for full load (a second MT3608 on the same ground).
 6. Mic L/R to GND gives the left channel. The amp SD pin has to be high to play sound, so tie it to 3.3 V, and leaving the amp GAIN pin floating is about 9 dB.
-7. The Pi Zero needs the narrow CSI ribbon (22 pin to 15 pin), not the standard camera ribbon.
+7. Camera ribbon: The Pi Zero needs the narrow CSI ribbon (22 pin to 15 pin). The Pi 3 and 4 use the standard 15 pin ribbon.
 8. The WS2812 data line needs root, so launch with `sudo`.
 
 ## Power budget
@@ -79,6 +80,7 @@ The 3.3 V for the IMU and the mic comes from the Pi's own 3.3 V pins, not from t
 | Draw | Typical | Peak |
 |------|--------:|-----:|
 | Pi Zero 2 W | 200 mA | 400 mA |
+| Pi 3 / 4 | 400-600 mA | 1250-3500 mA |
 | 2x SCS0009 (walking) | 400 mA | 1700 mA (both stalling) |
 | Audio and LEDs | ~100 mA | ~400 mA |
 | **Total** | **~700 mA** | **~2.1 A** |

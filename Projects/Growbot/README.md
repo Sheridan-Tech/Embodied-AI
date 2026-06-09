@@ -54,7 +54,7 @@ The body is intentionally simple so the project can focus on intelligence, train
 
 | Subsystem            | Component                                |                     Example Part / Notes | Approximate Cost |
 | -------------------- | ---------------------------------------- | ---------------------------------------: | ---------------: |
-| Brain                | Processing chip with wireless capability |                    Raspberry Pi Zero 2 W |             ~$15 |
+| Brain                | Processing chip with wireless capability |             Raspberry Pi Zero 2 W, 3, or 4 |             ~$15+ |
 | Legs / Actuation     | 2 simple servo motors                    |           Tower Pro SG90 9g micro servos |         ~$3 each |
 | Vision               | 5-megapixel camera                       |                  Raspberry Pi 5MP camera |              ~$5 |
 | Motion / Touch Sense | IMU sensor                               |                             MPU-6050 IMU |             <$10 |
@@ -325,7 +325,7 @@ The full GrowBot system can be summarized as follows:
 
 ```text
 Physical Robot
-  ├─ Raspberry Pi Zero 2 W or similar low-cost wireless processor
+  ├─ Raspberry Pi (Zero 2 W, 3, or 4) or similar low-cost wireless processor
   ├─ 2 servo-driven legs
   ├─ 5MP camera
   ├─ MPU-6050 IMU

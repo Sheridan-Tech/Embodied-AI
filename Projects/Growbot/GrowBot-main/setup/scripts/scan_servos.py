@@ -36,7 +36,7 @@ def main() -> int:
         bus = ServoBus(args.port, args.baud)
     except Exception as exc:
         print(f"!! could not open {args.port}: {exc}")
-        print("   On a Pi Zero 2W the servo bus is /dev/serial0, not /dev/ttyS0.")
+        print("   On a Raspberry Pi (Zero 2W, 3, or 4) the servo bus is /dev/serial0, not /dev/ttyS0.")
         return 1
 
     found = []

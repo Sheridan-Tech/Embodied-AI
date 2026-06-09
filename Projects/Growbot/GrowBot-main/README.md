@@ -22,7 +22,7 @@ Most importantly, getting physical AI in your hands: fast, easy, and cheap. So t
 ## The build at a glance
 | Part of the robot | What I used |
 |---|---|
-| Brain | Raspberry Pi Zero 2 W (quad core, WiFi) and a microSD card |
+| Brain | Raspberry Pi Zero 2 W, Pi 3, or Pi 4 (quad core, WiFi) |
 | Legs | 2x Feetech SCS0009 serial bus servos (they report position and load) |
 | Senses | OV5647 camera, MPU-6050 IMU, INMP441 mic |
 | Voice and lights | MAX98357A amp into a small speaker, WS2812B LED ring |
