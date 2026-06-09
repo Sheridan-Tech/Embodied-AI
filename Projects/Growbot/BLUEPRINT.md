@@ -55,7 +55,7 @@ The robot body should include:
 
 | Subsystem       | Component                                 | Example / Current Candidate              | Notes                                                                                  |
 | --------------- | ----------------------------------------- | ---------------------------------------- | -------------------------------------------------------------------------------------- |
-| Main processor  | Low-cost wireless processing board        | Raspberry Pi Zero 2 W                    | Handles local runtime, wireless connection, sensor I/O, and communication with server. |
+| Main processor  | Low-cost wireless processing board        | Raspberry Pi (Zero 2 W, 3, or 4)         | Handles local runtime, wireless connection, sensor I/O, and communication with server. |
 | Actuation       | 2 micro servos                            | Tower Pro SG90 9g micro servos           | Drives the two legs. Verify torque, backlash, current draw, and stall behavior.        |
 | Vision          | 5MP camera                                | Raspberry Pi 5MP camera                  | Used for visual input to the reasoning layer.                                          |
 | Motion sensing  | IMU                                       | MPU-6050                                 | Measures acceleration and angular velocity. Primary physical feedback sensor.          |
@@ -376,7 +376,7 @@ Possible deployment formats:
 * TorchScript.
 * Custom NumPy implementation for a small MLP.
 
-For a Raspberry Pi Zero 2 W, a small MLP or lightweight ONNX/TFLite deployment is likely more realistic than a large framework-heavy runtime.
+For a Raspberry Pi Zero 2 W, 3, or 4, a small MLP or lightweight ONNX/TFLite deployment is likely more realistic than a large framework-heavy runtime.
 
 ## Recommended Hardware Bring-Up Sequence
 

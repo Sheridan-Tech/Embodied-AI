@@ -68,7 +68,7 @@
 <rect x="60" y="372" width="318" height="422" rx="3" fill="#ffffff" stroke="#2d6a2f" stroke-width="1.75"/>
 <rect x="60" y="372" width="318" height="30" rx="3" fill="#2d6a2f"/>
 <rect x="60" y="388" width="318" height="14" fill="#2d6a2f"/>
-<text x="72" y="393" font-size="13" font-weight="700" fill="#fff">Raspberry Pi Zero 2 W</text>
+<text x="72" y="393" font-size="13" font-weight="700" fill="#fff">Raspberry Pi (Zero 2 W, 3, or 4)</text>
 <circle cx="60" cy="427.0" r="5" fill="#d9534f" stroke="#fff" stroke-width="1"/>
 <text x="74" y="431.0" font-size="11.5" fill="#333">Pin2/4  5V</text>
 <rect x="344.0" y="417.0" width="22.0" height="20" rx="3" fill="#d9534f"/>

@@ -5,8 +5,8 @@ Edit them to match YOUR build.
 """
 
 # --- Servo bus (SCS0009 / SC09 Feetech serial-bus servos) ---
-# On a Raspberry Pi Zero 2W this is the real PL011 UART. NOT /dev/ttyS0, which
-# exists but raises termios.error (5, 'Input/output error').
+# On a Raspberry Pi (Zero 2W, 3, or 4) this is typically the real PL011 UART.
+# NOT /dev/ttyS0, which exists but raises termios.error (5, 'Input/output error').
 SERVO_PORT = "/dev/serial0"
 SERVO_BAUD = 1_000_000
 

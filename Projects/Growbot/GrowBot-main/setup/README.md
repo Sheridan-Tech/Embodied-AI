@@ -52,7 +52,7 @@ python3 scripts/test_camera.py            # one photo to /tmp
 sudo -E python3 scripts/hello_growbot.py  # lights, voice, legs together
 ```
 
-If `scan_servos.py` can't open the port: on a Pi Zero 2W the servo bus is `/dev/serial0` (the real PL011 UART), not `/dev/ttyS0` (which throws an Input/output error). Enable it with `raspi-config` > Interface Options > Serial Port: login shell off, serial hardware on, then reboot.
+If `scan_servos.py` can't open the port: on a Raspberry Pi (Zero 2W, 3, or 4) the servo bus is typically `/dev/serial0` (the real PL011 UART), not `/dev/ttyS0` (which throws an Input/output error). Enable it with `raspi-config` > Interface Options > Serial Port: login shell off, serial hardware on, then reboot.
 
 ## SCS0009 register cheat sheet
 
@@ -72,7 +72,7 @@ The SCS0009 reports 0 to 1023 across about 300 degrees. On my units the usable f
 
 ## Tested on
 
-A Raspberry Pi Zero 2W (Raspberry Pi OS Bookworm, 64-bit) with two SCS0009 servos on the PL011 UART at 1 Mbaud, an MPU-6050 IMU at I2C 0x68, a 7-pixel WS2812 ring on GPIO12, a MAX98357A amp into a speaker, an INMP441 mic, and a Pi camera. Your build will differ, so `growbot/pins.py` is where you reconcile it.
+A Raspberry Pi (Zero 2W, 3, or 4 running Raspberry Pi OS Bookworm, 64-bit) with two SCS0009 servos on the PL011 UART at 1 Mbaud, an MPU-6050 IMU at I2C 0x68, a 7-pixel WS2812 ring on GPIO12, a MAX98357A amp into a speaker, an INMP441 mic, and a Pi camera. Your build will differ, so `growbot/pins.py` is where you reconcile it.
 
 Audio note: the MAX98357A is usually set up with the googlevoicehat-soundcard overlay, so its ALSA card shows up as `sndrpigooglevoi` (that is the default in `pins.py`; change it if yours differs). If a play returns cleanly but you hear nothing, it is almost always speaker wiring, not software.
 
